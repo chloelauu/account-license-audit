@@ -89,3 +89,23 @@ ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 fig.tight_layout()
 fig.savefig(OUTPUT_DIR / "chart_account_status.png", dpi=150)
 plt.close(fig)
+
+# ---- Chart 2: licenses in use vs wasted (before cleanup) ----
+license_counts = {
+    "In use\n(active accounts)": (has_license & is_active).sum(),
+    "Wasted\n(disabled accounts)": len(wasted_licenses),
+}
+
+fig, ax = plt.subplots(figsize=(6, 4.5))
+bars = ax.bar(license_counts.keys(), license_counts.values(),
+              color=["#2a78d6", "#eb6834"], width=0.5)
+ax.bar_label(bars, padding=3)
+ax.set_title("Licenses in use vs wasted")
+ax.set_ylabel("Number of licenses")
+ax.spines[["top", "right"]].set_visible(False)
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+fig.tight_layout()
+fig.savefig(OUTPUT_DIR / "chart_licenses.png", dpi=150)
+plt.close(fig)
+
+print(f"Charts saved to {OUTPUT_DIR}/")
