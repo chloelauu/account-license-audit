@@ -43,3 +43,27 @@ cleaned = cleaned.sort_values("name")
 OUTPUT_DIR.mkdir(exist_ok=True)
 cleaned.to_csv(OUTPUT_DIR / "cleaned_accounts.csv", index=False)
 print(f"Saved {len(cleaned)} accounts to {OUTPUT_DIR / 'cleaned_accounts.csv'}")
+
+# ---- Write the text summary ----
+summary = f"""Account and License Cleanup Report
+Report date: {REPORT_DATE.date()}
+
+Accounts checked: {len(accounts)}
+Active accounts inactive for over {INACTIVE_DAYS} days: {len(inactive)}
+Rows sharing a duplicate email: {len(duplicates)}
+Licenses still assigned to disabled accounts: {len(wasted_licenses)}
+
+Accounts after removing duplicates: {len(cleaned)}
+
+Inactive accounts to review:
+{inactive[["name", "email", "days_since_login"]].to_string(index=False)}
+
+Duplicate emails:
+{duplicates[["name", "email", "last_login"]].to_string(index=False)}
+
+Licenses to reclaim:
+{wasted_licenses[["name", "email", "license"]].to_string(index=False)}
+"""
+
+(OUTPUT_DIR / "summary.txt").write_text(summary)
+print(summary)
