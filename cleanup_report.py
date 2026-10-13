@@ -11,5 +11,7 @@ not_logged_in_recently = accounts["days_since_login"] > INACTIVE_DAYS
 is_active = accounts["status"] == "active"
 inactive = accounts[not_logged_in_recently & is_active]
 
-print(inactive)
-print(len(inactive))
+duplicates = accounts[accounts["email"].duplicated(keep=False)].sort_values("email")
+
+print(duplicates)
+print(len(duplicates))
