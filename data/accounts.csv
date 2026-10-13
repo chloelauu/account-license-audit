@@ -1,0 +1,31 @@
+name,email,last_login,license,status
+Alex Tan,alex.tan@example.com,2026-10-10,Office Suite,active
+Priya Nair,priya.nair@example.com,2026-10-02,Design Suite,active
+Marcus Lim,marcus.lim@example.com,2026-09-28,Office Suite,active
+Siti Rahman,siti.rahman@example.com,2026-10-12,Project Tracker,active
+Daniel Wong,daniel.wong@example.com,2026-09-15,Office Suite,active
+Mei Ling Goh,meiling.goh@example.com,2026-08-20,,active
+Ravi Kumar,ravi.kumar@example.com,2026-10-01,Design Suite,active
+Hannah Lee,hannah.lee@example.com,2026-09-05,Office Suite,active
+Jason Ong,jason.ong@example.com,2026-10-13,Project Tracker,active
+Nurul Aisyah,nurul.aisyah@example.com,2026-07-30,Office Suite,active
+Kevin Chua,kevin.chua@example.com,2026-09-22,,active
+Grace Teo,grace.teo@example.com,2026-10-08,Design Suite,active
+Ethan Koh,ethan.koh@example.com,2026-08-11,Office Suite,active
+Farah Iskandar,farah.iskandar@example.com,2026-09-30,Project Tracker,active
+Benjamin Yeo,benjamin.yeo@example.com,2026-10-05,Office Suite,active
+Sarah Ng,sarah.ng@example.com,2026-05-14,Office Suite,active
+Wei Jie Tan,weijie.tan@example.com,2026-03-03,Design Suite,active
+Arjun Menon,arjun.menon@example.com,2026-06-20,Office Suite,active
+Rachel Ho,rachel.ho@example.com,2026-01-18,Project Tracker,active
+Imran Hakim,imran.hakim@example.com,2026-04-09,,active
+Olivia Pang,olivia.pang@example.com,2026-07-01,Office Suite,active
+Bryan Seah,bryan.seah@example.com,2026-08-28,Office Suite,disabled
+Joanne Quek,joanne.quek@example.com,2026-06-02,Design Suite,disabled
+Zul Hamid,zul.hamid@example.com,2026-09-10,Project Tracker,disabled
+Melissa Foo,melissa.foo@example.com,2026-02-25,Office Suite,disabled
+Terence Low,terence.low@example.com,2026-05-30,,disabled
+Amanda Chew,amanda.chew@example.com,2026-09-18,,disabled
+Alex Tan,alex.tan@example.com,2026-09-12,Design Suite,active
+Grace Teo,grace.teo@example.com,2026-09-25,Office Suite,active
+Lucas Tay,lucas.tay@example.com,2026-10-09,Office Suite,active
