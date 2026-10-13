@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 import pandas as pd
 
 # ---- Settings ----
@@ -67,3 +69,43 @@ Licenses to reclaim:
 
 (OUTPUT_DIR / "summary.txt").write_text(summary)
 print(summary)
+
+# ---- Chart 1: accounts by status ----
+cleaned_active = cleaned[cleaned["status"] == "active"]
+status_counts = {
+    "Active\n(logged in recently)": (~cleaned_active["needs_review"]).sum(),
+    f"Inactive\n(over {INACTIVE_DAYS} days)": cleaned_active["needs_review"].sum(),
+    "Disabled": (cleaned["status"] == "disabled").sum(),
+}
+
+fig, ax = plt.subplots(figsize=(7, 4.5))
+bars = ax.bar(status_counts.keys(), status_counts.values(),
+              color=["#2a78d6", "#eb6834", "#9a9893"], width=0.6)
+ax.bar_label(bars, padding=3)
+ax.set_title("Accounts by status")
+ax.set_ylabel("Number of accounts")
+ax.spines[["top", "right"]].set_visible(False)
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+fig.tight_layout()
+fig.savefig(OUTPUT_DIR / "chart_account_status.png", dpi=150)
+plt.close(fig)
+
+# ---- Chart 2: licenses in use vs wasted (before cleanup) ----
+license_counts = {
+    "In use\n(active accounts)": (has_license & is_active).sum(),
+    "Wasted\n(disabled accounts)": len(wasted_licenses),
+}
+
+fig, ax = plt.subplots(figsize=(6, 4.5))
+bars = ax.bar(license_counts.keys(), license_counts.values(),
+              color=["#2a78d6", "#eb6834"], width=0.5)
+ax.bar_label(bars, padding=3)
+ax.set_title("Licenses in use vs wasted")
+ax.set_ylabel("Number of licenses")
+ax.spines[["top", "right"]].set_visible(False)
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+fig.tight_layout()
+fig.savefig(OUTPUT_DIR / "chart_licenses.png", dpi=150)
+plt.close(fig)
+
+print(f"Charts saved to {OUTPUT_DIR}/")
