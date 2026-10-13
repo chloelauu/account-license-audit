@@ -11,7 +11,13 @@ not_logged_in_recently = accounts["days_since_login"] > INACTIVE_DAYS
 is_active = accounts["status"] == "active"
 inactive = accounts[not_logged_in_recently & is_active]
 
+# ---- Check 2: the same email used more than once ----
 duplicates = accounts[accounts["email"].duplicated(keep=False)].sort_values("email")
 
-print(duplicates)
-print(len(duplicates))
+# ---- Check 3: disabled accounts that still hold a license ----
+is_disabled = accounts["status"] == "disabled"
+has_license = accounts["license"].notna()
+wasted_licenses = accounts[is_disabled & has_license]
+
+print(wasted_licenses)
+print(len(wasted_licenses))
